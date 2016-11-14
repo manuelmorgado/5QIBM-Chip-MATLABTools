@@ -1,4 +1,4 @@
-File Gate X : Shot 1024 : Gates # 1 : Run 2 is missing. Please Check.
+file Gate X : Shot 1024 : Gates # 1 : Run 2 is missing. Please Check.
 File Gate X : Shot 1024 : Gates # 2 : Run 2 is missing. Please Check.
 File Gate X : Shot 1024 : Gates # 3 : Run 2 is missing. Please Check.
 File Gate X : Shot 1024 : Gates # 4 : Run 2 is missing. Please Check.
