@@ -1,4 +1,5 @@
 clc;
+Gengates
 j = 1; i = 1;
 while j == 1
     if i<10
