@@ -81,7 +81,7 @@ for g = 4:4;
     
     Data = cat(1,Data1,Data2,[0 0 aveFid]);
     
-    eMatrices = ErrorMatrix(listGates{g}, rhoProm, aveFid);
+    ErrorMatrix(listGates{g}, rhoExp)
     
     %Saving data in .txt file
     fileData = ['/Users/Manuel/Desktop/5QIBM-Chip-MATLABTools/Data/Data',sGate{g},'_Data.csv'];
