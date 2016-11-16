@@ -22,12 +22,15 @@ fileError = fopen('/Users/Manuel/Desktop/5QIBM-Chip-MATLABTools/Error_Reports/Er
 
 %Loop for every gate of Universal Set
 for g = 4:4;
-    gate = sGate{g}
-
+    gate = sGate{g};
+    
     %Loop for any number of shots
     for s = 1:4;
-        nShots = int2str(sShots(s))
-
+        nShots = int2str(sShots(s));
+        clc;
+        disp('Importing data...')
+        ['Importing gate ', gate,' with ', nShots, ' shots. '] 
+        pause(1)
         %Loop for nr of gates, max 20 runs
         for nr = 1:20;
 
@@ -65,26 +68,31 @@ for g = 4:4;
             end
         end
     end
-    
+
     %Insert cutoff for each gate
-    
+
     %Build Data matrix and compute average Fidelity using States
     Data1 = DataAnalyzer(Probability,dm{g});
     aveFid = sum(Data1(:,3))/length(Data1(:,3));
-    
-    %Computation of alfaProm, betaProm, rhoProm, fidFProm
-    alfaProm = sum(Data1(:,1))/length(Data1(:,3));
-    betaProm = sum(Data1(:,2))/length(Data1(:,3));
-    rhoProm = mDen([alfaProm betaProm]);
+
+    %Build Data2 and ompute alfaProm, betaProm, rhoProm, fidFProm
+    alfa2Prom = sum(Data1(:,1))/length(Data1(:,3));
+    beta2Prom = sum(Data1(:,2))/length(Data1(:,3));
+    rhoProm = mDen([sqrt(alfa2Prom) sqrt(beta2Prom)]);
     fidFProm = fidGate(rhoProm,dm{g},2);
-    Data2 = [alfaProm betaProm fidFProm];
-    
+    Data2 = [alfa2Prom beta2Prom fidFProm];
+
+    disp('Building data...')
+    %Build all Data structure
     Data = cat(1,Data1,Data2,[0 0 aveFid]);
-    
-    eMatrices = ErrorMatrix(listGates{g}, rhoProm, aveFid, fidFProm);
-    
-    %Saving data in .txt file
+
+    disp('Computing errors...')
+    %Compute the Probability for get a density matrix from Experiment
+    eMatrices = interfError(listGates{g}, rhoProm);
+
+    %Saving data in .csv file
     fileData = ['/Users/Manuel/Desktop/5QIBM-Chip-MATLABTools/Data/Data',sGate{g},'_Data.csv'];
     dlmwrite(fileData,Data, 'delimiter', ',', 'precision', 32);
 end
 fclose(fileError);
+disp('Done! :)')

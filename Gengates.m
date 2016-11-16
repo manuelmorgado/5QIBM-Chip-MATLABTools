@@ -1,13 +1,6 @@
-% Universidad Simon Bolivar
-% Autor: Manuel Morgado
-% Fecha: November 2016
-% 
-% Rutina: Generador de compuertas.
-% 
-% Entradas: .
-% Salida: Compuertas .
-
-clc;
+%Generates gates and some density matrices
+%Manuel Morgado
+%November 2016
 
 X = U_Px();
 Y = U_Py(); 
