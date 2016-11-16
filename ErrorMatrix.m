@@ -3,12 +3,13 @@
 %November 2016
 
 
-function NoiseMatrices = ErrorMatrix(gate, rhoExp, aveFid)
+function NoiseMatrices = ErrorMatrix(gate, rhoExp, aveFid, fidFProm)
 
 Gengates;
 
 NoiseMatrices = {};
-key = 1;
+%key = 1;
+count = 0;
 %Define Initial State
 % StateI = [1 0];
 
@@ -17,7 +18,7 @@ StateF = StateI*gate;
 
 %Compute density matrix 
 rhoTeo = mDen(StateF);
-while key==1;
+for p=0:0.001:1;
     %Ask for random probability 'p'
 %     key = 0;
 %         while key==0;
@@ -28,19 +29,18 @@ while key==1;
 %                 key = 0;
 %             end
 %         end
-    
 
     %Compute RhoNoise
-    rhoNoi = (1/(1-p))*rhoExp - p*rhoTeo;
+    rhoNoi = (1/(1-p))*(rhoExp - p*eye(2))
 
     %Compute RhoFinal in order to compute the Fidelity with Experiment
-    rhoF = (1-p)*rhoNoi + p*rhoTeo;
+    rhoF = rhoNoi + rhoTeo
 
     %Compute the Fidelity between rhoF and rhoExp
     gFidelity = fidGate(rhoF,rhoTeo,2);
 
-    if gFidelity<=aveFid
-        if gFidelity>=fidFProm
+    if gFidelity<fidFProm
+        if gFidelity>aveFid
             %Check components of rhoFinal are close to experimental
             for i=1:2
                 for j=1:2
@@ -54,7 +54,9 @@ while key==1;
             if count==4
                 disp('Guardado')
                 NoiseMatrices = cat(1,NoiseMatrices,rhoF);
-                key=0;
+                %key = 0; 
+                count = 0;
+                rhoF,p
             end
         end
     end

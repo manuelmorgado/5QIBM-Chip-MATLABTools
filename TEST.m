@@ -1,3 +1,12 @@
+% Universidad Simon Bolivar
+% Autor: Manuel Morgado
+% Fecha: November 2016
+% 
+% Rutina: Script de pruebas.
+% 
+% Entradas: .
+% Salida: Compuertas .
+
 clc;
 Gengates
 j = 1; i = 1;
