@@ -21,7 +21,7 @@ for p=0:0.000001:1;
     rhoNoi = mNoi(rhoTeo,p);
     
     %Compare element of interference in the Noise and Experimental Matrix
-    if abs(rhoNoi(1,2)-rhoExp(1,2))<1E-6
+    if abs(rhoNoi(1,2)-rhoExp(1,2))<1E-5
         buf = {rhoNoi p};
         eMatrices = cat(1,eMatrices,buf);      
     end

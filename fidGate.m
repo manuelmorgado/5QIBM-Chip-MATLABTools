@@ -5,5 +5,4 @@
 function output = fidGate(mS,mC,n)
 ms = ketbra2(mS);
 mC = ketbra2(mC);
-
 output=(1/n)*trace(sqrt((sqrt(mC))*(mS)*(sqrt(mC))));

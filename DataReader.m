@@ -17,25 +17,25 @@ gnr = 1;
 fName = 'distributionCSV';
 ext = '.csv';
 nr = 1;
-key = 0;
+
 fileError = fopen('/Users/Manuel/Desktop/5QIBM-Chip-MATLABTools/Error_Reports/ErrorReport.txt','wt');
 
-%Loop for every gate of Universal Set
-for g = 4:4;
+%Loop for every gate of Universal Set 1 to 8
+for g =8:8;
     gate = sGate{g};
-    
-    %Loop for any number of shots
-    for s = 1:4;
+    key = 0;
+    %Loop for any number of shots (1, 1024, 4096, 8192)
+    for s = 4:4;
         nShots = int2str(sShots(s));
         clc;
         disp('Importing data...')
         ['Importing gate ', gate,' with ', nShots, ' shots. '] 
         pause(1)
         %Loop for nr of gates, max 20 runs
-        for nr = 1:20;
+        for nr = 1:1;
 
             %Loop for runs, max 39 gates
-            for gnr = 39:39;
+            for gnr = 1:1;
  
                 %Open every data file
                 try
@@ -88,7 +88,7 @@ for g = 4:4;
 
     disp('Computing errors...')
     %Compute the Probability for get a density matrix from Experiment
-    eMatrices = interfError(listGates{g}, rhoProm);
+%     eMatrices = interfError(listGates{g}, rhoProm);
 
     %Saving data in .csv file
     fileData = ['/Users/Manuel/Desktop/5QIBM-Chip-MATLABTools/Data/Data',sGate{g},'_Data.csv'];
