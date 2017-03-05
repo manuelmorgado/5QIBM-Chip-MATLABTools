@@ -147,5 +147,5 @@ if Q== 1
 elseif Q== 2
     
     %Farewell
-    dips('Gotcha! Thanks for saving me the work! :) BTW, type "links" or "Lwp" for access to the operators structure. Bye!')
+    disp('Gotcha! Thanks for saving me the work! :) BTW, type "links" or "Lwp" for access to the operators structure. Bye!')
 end
